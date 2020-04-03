@@ -21,7 +21,7 @@ type Stream struct {
 	Packets      []gopacket.Packet
 	SIP, DIP     string
 	SPort, DPort uint16
-	Source       string
+	Source       string // describes the source of the pkt e.g. pcap file
 }
 
 type internalStream struct {
@@ -289,7 +289,7 @@ func (a *Assembler) DummyWorker() {
 
 	log.Println("New file: " + n)
 	w := pcapgo.NewWriter(f)
-	w.WriteFileHeader(65535, layers.LinkTypeIPv4)
+	w.WriteFileHeader(65535, layers.LinkTypeIPv4) // for some pcaps LinkTypeEthernet/LinkTypeIPv6 is needed
 
 	for {
 		select {
