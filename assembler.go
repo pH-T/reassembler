@@ -84,7 +84,7 @@ func (a *Assembler) SetFlushTime(value int) {
 	if value < 0 {
 		return
 	}
-	a.flushTime = time.Duration(value)
+	a.flushTime = time.Duration(value) * time.Minute
 }
 
 // Stats returnes the stats of the assembler.
