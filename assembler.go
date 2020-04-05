@@ -216,9 +216,9 @@ func (a *Assembler) Run() {
 
 				if tcp.FIN { // we found a FIN
 					elem.fins++
-					elem.Packets = append(elem.Packets, packet.pkt)
 					elem.lastUpdated = time.Now()
 					if elem.fins == 2 { // check if its the second one
+						elem.Packets = append(elem.Packets, packet.pkt)
 						if packet.pkt.Metadata() != nil {
 							elem.Endtime = packet.pkt.Metadata().Timestamp
 						} else {
